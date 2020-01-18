@@ -4,10 +4,12 @@
         <div>
             <h3>Products</h3>
             
-            <div v-for="product in productList" :key="product.id">
+            <div v-for="(product, index) in productList" :key="index">
                 Title: {{product.title}}
                 Quantity: {{product.quantity}}
                 Price: {{product.price}}
+                <button @click="addProduct(index)">Add product</button>
+                <button @click="removeProduct(index)">Remove product</button>
             </div>
         </div>
         <div>
@@ -25,20 +27,17 @@
                     {
                         title: "The Tales of Beedle the Bard",
                         quantity: 2,
-                        price: 15,
-                        id: 1
+                        price: 15
                     },
                     {
                         title: "A History of Magic by Bathilda Bagshot",
                         quantity: 1,
-                        price: 45,
-                        id: 2
+                        price: 45
                     },
                     {
                         title: "The Life and Lies of Albus Dumbledore",
                         quantity: 5,
-                        price: 22,
-                        id: 3
+                        price: 22
                     },
                 ]
             }
@@ -52,6 +51,14 @@
                 return totalPrice;
             }
         },
+        methods: {
+            addProduct(index) {
+                this.productList[index].quantity++
+            },
+            removeProduct(index){
+                this.productList[index].quantity--
+            }
+        }
     }
 </script>
 
