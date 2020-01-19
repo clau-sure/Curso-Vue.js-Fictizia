@@ -56,7 +56,13 @@
                 this.productList[index].quantity++
             },
             removeProduct(index){
-                this.productList[index].quantity--
+                if (this.productList[index].quantity > 1) {
+                    this.productList[index].quantity--;
+                }
+                else {
+                    this.productList.splice(this.productList[index], 1)
+                }
+                
             }
         }
     }
