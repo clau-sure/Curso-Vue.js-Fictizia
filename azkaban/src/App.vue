@@ -1,17 +1,19 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/magic.jpg" style="max-width: 300px">
+    <Header/>
     <WizardList/>
   </div>
 </template>
 
 <script>
 import WizardList from './components/WizardList'
+import Header from './components/Header'
 
 export default {
   name: 'app',
   components: {
-    WizardList
+    WizardList,
+    Header
   }
 }
 </script>

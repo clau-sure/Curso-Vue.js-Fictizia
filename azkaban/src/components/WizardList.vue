@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h2>Death Eaters</h2>
+    <h1>Death Eaters</h1>
     <div>
-      <div v-for="(deathEater, index) in deathEaters" :key="index">
-        <WizardCard :deathEater="deathEater" :index="index"></WizardCard>
+      <div class="container" v-for="(deathEater, index) in deathEaters" :key="index">
+        <WizardCard :deathEater="deathEater" :index="index" @remove-wizard="removeWizard" @captured-wizard="capturedWizard"></WizardCard>
       </div>
     </div>
   </div>
@@ -21,40 +21,53 @@ export default {
     return {
       deathEaters: [
         {
-          image: "../assets/bellatrix.jpg",
+          image: require("../assets/bellatrix.jpg"),
           name: "Bellatrix Lestrange",
           price: 3000,
           wanted: true
         },
         {
-          image: "../assets/lucius.jpg",
+          image: require("../assets/lucius.jpg"),
           name: "Lucius Malfoy",
           price: 1000,
-          wanted: true
+          wanted: false
         },
         {
-          image: "../assets/narcisa.jpg",
+          image: require("../assets/narcisa.jpg"),
           name: "Narcisa Malfoy",
           price: 500,
           wanted: true
         },
         {
-          image: "../assets/draco.jpg",
+          image: require("../assets/draco.jpg"),
           name: "Draco Malfoy",
           price: 200,
           wanted: true
         },
         {
-          image: "../assets/greyback.png",
+          image: require("../assets/greyback.png"),
           name: "Fenrir Greyback",
           price: 4000,
           wanted: true
         }
       ]
     };
+  },
+    methods: {
+    removeWizard(value){
+        this.deathEaters.splice(this.deathEaters[value], 1);
+    },
+    capturedWizard(value){
+        this.deathEaters[value].wanted = !this.deathEaters[value].wanted
+    }
   }
 };
 </script>
 
 <style>
+
+.container {
+    display: inline-block;
+}
+
 </style>
