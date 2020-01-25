@@ -1,73 +1,73 @@
 <template>
-    <div>  
-        <h2>Flourish and Blotts</h2>
-        <div>
-            <h3>Products</h3>
-            
-            <div v-for="(product, index) in productList" :key="index">
-                Title: {{product.title}}
-                Quantity: {{product.quantity}}
-                Price: {{product.price}}
-                <button @click="addProduct(index)">Add product</button>
-                <button @click="removeProduct(index)">Remove product</button>
-            </div>
-        </div>
-        <div>
-            <h3>Your carrier</h3>
-            <p>Total: {{totalPrice}} galeons</p>
-        </div>
+  <div>
+    <h2>Flourish and Blotts</h2>
+    <div>
+      <h3>Products</h3>
+      <div v-for="(product, index) in productList" :key="index">
+      <DiagonItem :productValley="product" :indexValley="index" @add-product="addProduct" @remove-product="removeProduct" @remove-all="removeAll"></DiagonItem>
+      </div>
     </div>
+    <div>
+      <h3>Your carrier</h3>
+      <p>Total: {{totalPrice}} galeons</p>
+    </div>
+  </div>
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-                productList: [
-                    {
-                        title: "The Tales of Beedle the Bard",
-                        quantity: 2,
-                        price: 15
-                    },
-                    {
-                        title: "A History of Magic by Bathilda Bagshot",
-                        quantity: 1,
-                        price: 45
-                    },
-                    {
-                        title: "The Life and Lies of Albus Dumbledore",
-                        quantity: 5,
-                        price: 22
-                    },
-                ]
-            }
+import DiagonItem from "./DiagonItem";
+
+export default {
+    components: {
+        DiagonItem
+    },
+  data() {
+    return {
+      productList: [
+        {
+          title: "The Tales of Beedle the Bard",
+          quantity: 2,
+          price: 15
         },
-        computed: {
-            totalPrice({productList}) {
-                var totalPrice=""
-                productList.forEach(product => {
-                    totalPrice += product.quantity * product.price
-                });
-                return totalPrice;
-            }
+        {
+          title: "A History of Magic by Bathilda Bagshot",
+          quantity: 1,
+          price: 45
         },
-        methods: {
-            addProduct(index) {
-                this.productList[index].quantity++
-            },
-            removeProduct(index){
-                if (this.productList[index].quantity > 1) {
-                    this.productList[index].quantity--;
-                }
-                else {
-                    this.productList.splice(this.productList[index], 1)
-                }
-                
-            }
+        {
+          title: "The Life and Lies of Albus Dumbledore",
+          quantity: 5,
+          price: 22
         }
+      ]
+    };
+  },
+  computed: {
+    totalPrice({ productList }) {
+      var totalPrice = "";
+      productList.forEach(product => {
+        totalPrice += product.quantity * product.price;
+      });
+      return totalPrice;
     }
+  },
+  methods: {
+    addProduct(value) {
+      this.productList[value].quantity++;
+    },
+    removeProduct(value) {
+      if (this.productList[value].quantity > 1) {
+        this.productList[value].quantity--;
+      } else {
+        this.productList.splice(this.productList[value], 1);
+      }
+    },
+    removeAll(value){
+        this.productList.splice(this.productList[value], 1);
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
-
 </style>
