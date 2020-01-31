@@ -2,20 +2,29 @@
   <div>
     <h1>Death Eaters</h1>
     <div>
-      <div class="container" v-for="(deathEater, index) in deathEaters" :key="index">
-        <WizardCard :deathEater="deathEater" :index="index" @remove-wizard="removeWizard" @captured-wizard="capturedWizard"></WizardCard>
+      <div
+        v-if="exists"
+        style="margin-top= 20px"
+      >No wizard for this search. Please, try another name.</div>
+      <div class="container" v-for="(deathEater, index) in searchWizard" :key="index">
+        <WizardCard
+          :deathEater="deathEater"
+          :index="index"
+          @remove-wizard="removeWizard"
+          @captured-wizard="capturedWizard"
+        ></WizardCard>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import WizardCard from './WizardCard';
+import WizardCard from "./WizardCard";
 
 export default {
   name: "WizardList",
   components: {
-      WizardCard
+    WizardCard
   },
   data() {
     return {
@@ -53,21 +62,39 @@ export default {
       ]
     };
   },
-    methods: {
-    removeWizard(value){
-        this.deathEaters.splice(this.deathEaters[value], 1);
+  props: {
+    search: {
+      required: false,
+      type: String
+    }
+  },
+  methods: {
+    removeWizard(value) {
+      this.deathEaters.splice(this.deathEaters[value], 1);
     },
-    capturedWizard(value){
-        this.deathEaters[value].wanted = !this.deathEaters[value].wanted
+    capturedWizard(value) {
+      this.deathEaters[value].wanted = !this.deathEaters[value].wanted;
+    }
+  },
+  computed: {
+    searchWizard() {
+      if (this.search) {
+        const list = this.deathEaters.filter(wizard =>
+          wizard.name.toLowerCase().includes(this.search.toLowerCase())
+        );
+        return list;
+      } else return this.deathEaters;
+    },
+    exists() {
+      if (this.searchWizard == 0) return true;
+      else return false;
     }
   }
 };
 </script>
 
 <style>
-
 .container {
-    display: inline-block;
+  display: inline-block;
 }
-
 </style>

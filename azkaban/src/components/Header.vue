@@ -1,13 +1,25 @@
 <template>
   <div class="container">
     <img src="../assets/magic.jpg" style="max-width: 200px" />
-    <input type="text" placeholder="Type your search" />
-    <button class="button">Search</button>
+    <input type="text" placeholder="Type your search" v-model="search"/>
   </div>
 </template>
 
 <script>
-export default {};
+
+export default {
+  name: 'Header',
+  data () {
+    return {
+      search: ""
+    }
+  },
+  watch: {
+    search(value) {
+      this.$emit('search-text', value)
+    }
+  }
+};
 </script>
 
 <style>
@@ -22,15 +34,5 @@ select {
   box-sizing: border-box;
 }
 
-.button {
-  background-color: black;
-  border: none;
-  color: white;
-  padding: 10px 10px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  margin: 5px;
-  cursor: pointer;
-}
+
 </style>

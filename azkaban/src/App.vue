@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Header/>
-    <WizardList/>
+    <Header @search-text="searchText"/>
+    <WizardList :search="search"/>
   </div>
 </template>
 
@@ -14,6 +14,16 @@ export default {
   components: {
     WizardList,
     Header
+  },
+  data() {
+    return {
+      search: ""
+    }
+  },
+  methods: {
+    searchText(value) {
+      this.search = value;
+    }
   }
 }
 </script>
