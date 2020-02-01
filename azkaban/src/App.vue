@@ -13,7 +13,7 @@ export default {
   name: 'app',
   components: {
     WizardList,
-    Header
+    Header,
   },
   data() {
     return {

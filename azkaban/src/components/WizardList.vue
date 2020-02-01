@@ -1,4 +1,6 @@
 <template>
+<div>
+  <Form @new-wizard="newWizard"/>
   <div>
     <h1>Death Eaters</h1>
     <div>
@@ -16,15 +18,18 @@
       </div>
     </div>
   </div>
+  </div>
 </template>
 
 <script>
-import WizardCard from "./WizardCard";
+import WizardCard from "@/components/WizardCard";
+import Form from '@/components/Form'
 
 export default {
   name: "WizardList",
   components: {
-    WizardCard
+    WizardCard,
+    Form
   },
   data() {
     return {
@@ -74,6 +79,9 @@ export default {
     },
     capturedWizard(value) {
       this.deathEaters[value].wanted = !this.deathEaters[value].wanted;
+    },
+    newWizard(value){
+      this.deathEaters.push(value);
     }
   },
   computed: {
