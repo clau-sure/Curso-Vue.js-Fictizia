@@ -1,7 +1,7 @@
 <template>
 <div>  
-  <h2>The header</h2>
-  <router-link to="/">Home</router-link> |
+  <h2>Wizard Characters</h2>
+  <router-link to="/">Wizard List</router-link> |
   <router-link to="/about">About</router-link>
 </div>
 </template>
