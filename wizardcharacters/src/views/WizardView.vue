@@ -1,48 +1,35 @@
 <template>
-    <div>
-        <img :src="`${wizard.image}`" style="max-width: 250px; height: 350px" >
-        <div class="container">
-            <h2>{{wizard.name}}</h2>
-            <h3>House: {{wizard.house}}</h3>
-            <p>Specie: {{wizard.species}}</p>
-            <p>Gender: {{wizard.gender}}</p>
-            <p>Date of Birth: {{wizard.dateOfBirth}}</p>
-            <p>Ancestry: {{wizard.ancestry}}</p>
-            <p>Eye colour: {{wizard.eyeColour}}</p>
-            <p>Is he alive? <strong>{{wizard.alive}}</strong></p>
-        </div>
-        <router-link class="button" to="/">Go back to wizard List</router-link>
-    </div>
+  <div class="card">
+    <img :src="wizard.image" style="max-width: 250px; height: 350px" />
+    <p>Name: {{wizard.name}}</p>
+    <p>Actor: {{wizard.actor}}</p>
+    <p>Patronus: {{wizard.patronus}}</p>
+    <p>Species: {{wizard.species}}</p>
+    <p>House: {{wizard.house}}</p>
+    <p>Alive: {{wizard.alive}}</p>
+  </div>
 </template>
 
 <script>
-
-
 export default {
-    name: 'WizardView',
-    props: {
-        name: {
-            type: String
-        }
-
-    },
-    created() {
-        var wizardList = localStorage.getItem('wizards');
-        this.wizard = JSON.parse(wizardList).find(wizard => wizard.name === this.name)
+  name: "WizardView",
+  props: {
+    id: {
+      required: true,
+      type: String
     }
-}
+  },
+  data() {
+    return {
+      wizard: {}
+    };
+  },
+  created() {
+    var wizards = localStorage.getItem("wizards");
+    this.wizard = JSON.parse(wizards).find(wizard => wizard.name === this.id);
+  }
+};
 </script>
-<style>
 
-.button {
-  background-color: black;
-  border: none;
-  color: white;
-  padding: 10px 10px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  margin: 5px;
-  cursor: pointer;
-}
+<style>
 </style>

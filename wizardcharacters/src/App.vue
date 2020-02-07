@@ -1,44 +1,45 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <the-header />
-    </div>
-    <router-view />
-    <the-footer />
-  </div>
+<div id="app">
+<div id="nav">
+<the-header/>
+</div>
+<router-view/>
+<the-footer/>
+</div>
 </template>
+
 <script>
-import TheHeader from "@/components/TheHeader";
-import TheFooter from "@/components/TheFooter";
+import theHeader from "./components/theHeader";
+import theFooter from "./components/theFooter";
 
 export default {
-  name: "app",
-  components: {
-    TheHeader,
-    TheFooter
-  }
-};
+name: "App",
+components: {
+theHeader,
+theFooter
+}
+}
 </script>
 
 <style>
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+font-family: 'Avenir', Helvetica, Arial, sans-serif;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+text-align: center;
+color: #2c3e50;
 }
 
 #nav {
-  padding: 30px;
+padding: 30px;
 }
 
 #nav a {
-  font-weight: bold;
-  color: #2c3e50;
+font-weight: bold;
+color: #2c3e50;
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+color: #42b983;
 }
 </style>
