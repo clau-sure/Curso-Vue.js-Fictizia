@@ -25,15 +25,15 @@ export default {
         }
     },
     methods: {
-        addProduct(id){
-        this.$emit("add-product", id)
-    },
-    removeProduct(id){
-        this.$emit("remove-product", id)
-    },
-    removeAll(id){
-        this.$emit("remove-all", id)
-    }
+        addProduct(index) {
+            this.$store.dispatch("addProduct", index)
+        },
+        removeProduct(index){
+            this.$store.dispatch("removeProduct", index)
+        },
+        removeAll(index) {
+            this.$store.dispatch("removeAll", index)
+        }
     }
 };
 </script>
