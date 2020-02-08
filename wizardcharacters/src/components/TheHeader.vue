@@ -3,6 +3,7 @@
   <h2>Wizard Characters</h2>
   <router-link to="/">Wizard List</router-link> |
   <router-link to="/about">About</router-link> |
+    <router-link to="/favorite">My Favorites</router-link> |
     <router-link to="/history">History</router-link>
 </div>
 </template>

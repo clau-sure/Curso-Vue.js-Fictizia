@@ -25,6 +25,11 @@ props: true,
 component: () => import(/* webpackChunkName: "WizardView" */ '../views/WizardView.vue')
 },
 {
+  path: '/favorite',
+  name: 'favorite',
+  component: () => import(/* webpackChunkName: "WizardView" */ '../views/TheFavoriteWizardsView.vue')
+  },
+{
   path: '/history',
   name: 'history',
   component: () => import('../views/HistoryView.vue'),
